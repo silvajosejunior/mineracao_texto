@@ -16,7 +16,7 @@ O projeto inclui uma interface gráfica com Tkinter para classificar emoções e
 
 1. Certifique-se de ter NLTK e Tkinter (biblioteca nativa do python).
 
-2. Execute o script `mineracao.py`.
+2. Execute o script `python mineracao.py`.
 
 ## Contribuições
 
