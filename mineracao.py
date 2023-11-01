@@ -816,10 +816,14 @@ stopwords = ['a', 'agora', 'algum', 'alguma', 'aquele', 'aqueles', 'de', 'deu', 
              'ir', 'meu', 'muito', 'mesmo', 'no', 'nossa', 'o', 'outro', 'para', 'que', 'sem', 'talvez', 'tem', 'tendo',
              'tenha', 'teve', 'tive', 'todo', 'um', 'uma', 'umas', 'uns', 'vou']
 
+# Definir as stopwords em português e adicionar palavras personalizadas a serem ignoradas
+
 stopwordsnltk = nltk.corpus.stopwords.words('portuguese')
 stopwordsnltk.append('vou')
 stopwordsnltk.append('tão')
-#print(stopwordsnltk)
+
+
+# Função para remover stopwords de um texto
 
 def removestopwords(texto):
     frases = []
@@ -828,7 +832,7 @@ def removestopwords(texto):
         frases.append((semstop, emocao))
     return frases
 
-#print(removestopwords(base))
+# Função para aplicar o stemmer a um texto
 
 def aplicastemmer(texto):
     stemmer = nltk.stem.RSLPStemmer()
@@ -838,9 +842,12 @@ def aplicastemmer(texto):
         frasessstemming.append((comstemming, emocao))
     return frasessstemming
 
+# Aplica o stemmer ao conjunto de treinamento e teste
+
 frasescomstemmingtreinamento = aplicastemmer(basetreinamento)
 frasescomstemmingteste = aplicastemmer(baseteste)
-#print(frasescomstemming)
+
+# Função para buscar todas as palavras em um conjunto de frases
 
 def buscapalavras(frases):
     todaspalavras = []
@@ -848,27 +855,35 @@ def buscapalavras(frases):
         todaspalavras.extend(palavras)
     return todaspalavras
 
+# Obtém todas as palavras do conjunto de treinamento e teste
+
 palavrastreinamento = buscapalavras(frasescomstemmingtreinamento)
 palavrasteste = buscapalavras(frasescomstemmingteste)
-#print(palavras)
+
+# Função para buscar a frequência das palavras
 
 def buscafrequencia(palavras):
     palavras = nltk.FreqDist(palavras)
     return palavras
 
+# Calcula a frequência das palavras no conjunto de treinamento e teste
+
 frequenciatreinamento = buscafrequencia(palavrastreinamento)
 frequenciateste = buscafrequencia(palavrasteste)
-#print(frequencia.most_common(50))
+
+# Função para buscar palavras únicas
 
 def buscapalavrasunicas(frequencia):
     freq = frequencia.keys()
     return freq
 
+# Obtém as palavras únicas do conjunto de treinamento e teste
+
 palavrasunicastreinamento = buscapalavrasunicas(frequenciatreinamento)
 palavrasunicasteste = buscapalavrasunicas(frequenciateste)
-#print(palavrasunicastreinamento)
 
-#print(palavrasunicas)
+
+# Função para extrair características de um documento
 
 def extratorpalavras(documento):
     doc = set(documento)
@@ -878,28 +893,22 @@ def extratorpalavras(documento):
     return caracteristicas
 
 caracteristicasfrase = extratorpalavras(['am', 'nov', 'dia'])
-#print(caracteristicasfrase)
+
+# Obtém as características das frases do conjunto de treinamento e teste
 
 basecompletatreinamento = nltk.classify.apply_features(extratorpalavras, frasescomstemmingtreinamento)
 basecompletateste = nltk.classify.apply_features(extratorpalavras, frasescomstemmingteste)
-#print(basecompleta[15])
 
-# constroi a tabela de probabilidade
+
+# Treina o classificador Naive Bayes
 classificador = nltk.NaiveBayesClassifier.train(basecompletatreinamento)
-#print(classificador.labels())
-#print(classificador.show_most_informative_features(20))
-
-#print(nltk.classify.accuracy(classificador, basecompletateste))
 
 erros = []
 for (frase, classe) in basecompletateste:
-    #print(frase)
-    #print(classe)
+
     resultado = classificador.classify(frase)
     if resultado != classe:
         erros.append((classe, resultado, frase))
-#for (classe, resultado, frase) in erros:
-#    print(classe, resultado, frase)
 
 from nltk.metrics import ConfusionMatrix
 esperado = []
@@ -909,14 +918,7 @@ for (frase, classe) in basecompletateste:
     previsto.append(resultado)
     esperado.append(classe)
 
-#esperado = 'alegria alegria alegria alegria medo medo surpresa surpresa'.split()
-#previsto = 'alegria alegria medo surpresa medo medo medo surpresa'.split()
 matriz = ConfusionMatrix(esperado, previsto)
-#print(matriz)
-
-# 1. Cenário
-# 2. Número de classes - 16%
-# 3. ZeroRules - 21,05%
 
 teste = 'eu sinto amor por voce'
 testestemming = []
@@ -924,15 +926,11 @@ stemmer = nltk.stem.RSLPStemmer()
 for (palavrastreinamento) in teste.split():
     comstem = [p for p in palavrastreinamento.split()]
     testestemming.append(str(stemmer.stem(comstem[0])))
-#print(testestemming)
 
 novo = extratorpalavras(testestemming)
-#print(novo)
 
-#print(classificador.classify(novo))
 distribuicao = classificador.prob_classify(novo)
-#for classe in distribuicao.samples():
-#    print("%s: %f" % (classe, distribuicao.prob(classe)))
+
 
 #Função para classificar uma nova frase e calcular as probabilidades
 
@@ -958,11 +956,8 @@ def classificar_frase():
     resultado_probabilidades_outras.set("\n".join(
         ["{}: {:.2f}%".format(label, probabilidades[label] * 100) for label in classificador.labels()]))
 
+#Criar uma janela para a interface gráfica
 
-
-#Função para classificar uma nova frase e calcular as probabilidades
-
-    # Criar uma janela para a interface gráfica
 janela = tk.Tk()
 janela.title("Classificação de Emoções")
 
@@ -988,6 +983,13 @@ etiqueta_probabilidades_outras = tk.Label(janela, textvariable=resultado_probabi
 etiqueta_probabilidades_outras.pack()
 
 janela.mainloop()
+
+
+
+
+
+
+
 
 
 
