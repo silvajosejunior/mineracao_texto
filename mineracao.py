@@ -28,8 +28,6 @@ base = [('eu sou admirada por muitos','alegria'),
         ('eu tenho muito medo dele', 'medo'),
         ('estou com medo do resultado dos meus testes', 'medo')]
 
-#print(base[1])
-
 
 
 baseteste =[('não precisei pagar o ingresso','alegria'),
@@ -80,7 +78,6 @@ baseteste =[('não precisei pagar o ingresso','alegria'),
 ('e um deleite poder compartilhar minhas vitórias','alegria'),
 ('ela e um boa garota','alegria'),
 ('estivemos em um ótimo show','alegria'),
-
 ('o mundo e feio como o pecado','desgosto'),
 ('a coisa mais difícil de esconder e aquilo que não existe','desgosto'),
 ('você errou feio aquele gol','desgosto'),
@@ -116,7 +113,6 @@ baseteste =[('não precisei pagar o ingresso','alegria'),
 ('foi de repente estou machucado e me sentindo enjoado','desgosto'),
 ('eu fiquei enojado','desgosto'),
 ('daqui alguns meses vou embora deste pais que já estou nauseado','desgosto'),
-
 ('que abominável esse montro!','medo'),
 ('vamos alarmar a todos sobre a situação','medo'),
 ('estou amedrontada','medo'),
@@ -153,7 +149,6 @@ baseteste =[('não precisei pagar o ingresso','alegria'),
 ('e abominável o que fazem com os animais','medo'),
 ('foi terrível o tigre quase o matou','medo'),
 ('me advertiram sobre isso','medo'),
-
 ('ate que enfim, não agüentava mais te esperar','raiva'),
 ('eu quero meu dinheiro de volta agora!','raiva'),
 ('eu odeio a escola!','raiva'),
@@ -190,7 +185,6 @@ baseteste =[('não precisei pagar o ingresso','alegria'),
 ('isso esta me enlouquecendo','raiva'),
 ('estou furiosa com você','raiva'),
 ('isso mesmo fique como e formidável a presença de todosfurioso','raiva'),
-
 ('esses livros são magníficos','surpresa'),
 ('esse vinho e magnífico','surpresa'),
 ('seria magnífico ver o esperaculo','surpresa'),
@@ -227,7 +221,6 @@ baseteste =[('não precisei pagar o ingresso','alegria'),
 ('e espantoso o modo como ele nos olha','surpresa'),
 ('incrivel você estar aqui','surpresa'),
 ('que fantástica festa minha querida','surpresa'),
-
 ('isso tudo e um erro','tristeza'),
 ('eu sou errada eu sou errante','tristeza'),
 ('tenho muito dó do cachorro','tristeza'),
@@ -639,7 +632,6 @@ basetreinamento = [
 ('morra maldito, morra!','raiva'),
 ('você e mais irritante de perto','raiva'),
 ('e bom fechar o bico','raiva'),
-
 ('magicamente você me surpreendeu','surpresa'),
 ('e imenso esse globo','surpresa'),
 ('isso e tremendamente interessante','surpresa'),
@@ -724,7 +716,6 @@ basetreinamento = [
 ('e esplendido como o ceu se encontra no momento','surpresa'),
 ('e um carro fantástico','surpresa'),
 ('um edifício realmente fantástico','surpresa'),
-
 ('por favor não me abandone','tristeza'),
 ('não quero ficar sozinha','tristeza'),
 ('não me deixe sozinha','tristeza'),
