@@ -1,16 +1,14 @@
 from flask import Flask, request, jsonify
 
-# Importe as funções e variáveis relacionadas à classificação de emoções do arquivo mineracao.py
 from analise import aplicastemmer, extratorpalavras, classificador
 
 app = Flask(__name__)
 
-# Rota para a raiz do aplicativo (pode ser acessada via navegador)
 @app.route('/')
 def index():
     return "Bem-vindo à API de classificação de emoções!"
 
-# Função para classificar uma nova frase e calcular as probabilidades
+
 def classificar_frase():
     frase = request.json.get('frase')
     testestemming = aplicastemmer([(frase, '')])
