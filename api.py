@@ -16,14 +16,13 @@ def classificar_frase():
     distribuicao = classificador.prob_classify(nova_frase)
     emocao_prevista = distribuicao.max()
 
-    # Corrigir as probabilidades
+    
     probabilidades = {}
     for label in classificador.labels():
         probabilidades[label] = distribuicao.prob(label)
 
     return emocao_prevista, probabilidades
 
-# Rota para classificação de emoções
 @app.route('/classificar_emocao', methods=['POST'])
 def classificar_emocao_endpoint():
     emocao_prevista, probabilidades = classificar_frase()
